@@ -1,27 +1,15 @@
 import { Router } from 'express';
-import { UserRoutes } from '../modules/user/user.route';
-import recipeRoute from '../modules/recipe/recipe.route';
-import passwordMutationRoute from '../modules/passwordMutation/passwordMutation.route';
-
+import dashboardRoute from '../modules/dashboard/dashboard.routes';
 
 
 const router = Router();
 
 const moduleRoutes = [
   {
-    path: "/auth",
-    route: UserRoutes,
-  },
-  {
-    path: "/recipe",
-    route: recipeRoute,
-  },
-  {
-    path: "/password",
-    route: passwordMutationRoute,
+    path: "/dashboard",
+    route: dashboardRoute,
   },
   
- 
 ];
 
 moduleRoutes.forEach((route) => router.use(route.path, route.route));

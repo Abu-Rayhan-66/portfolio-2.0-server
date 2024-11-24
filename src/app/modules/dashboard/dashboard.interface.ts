@@ -1,17 +1,28 @@
-export type TRecipe = {
-    user: string;
+export type TSkills = {
+    name: string;
+    image: string;
+    
+  };
+
+export type TProject = {
     title: string;
     image: string;
-    cookingTime: number;
-    upvote: string[];
-    downvote: string[];
-    upvoteCount:number
-    comments: [
-      { id: string; name: string; profilePicture: string; comment: string  },
-    ];
-    rating: [{ id: string; rating: number }];
-    isPublished: boolean;
-    ingredient: string;
     description: string;
-    isPremium: boolean;
+    technologies: string;
+    githubClient: string;
+    githubServer: string;
+    demo: string;
+    
   };
+
+export type TBlogs = {
+    title: string;
+    image: string;
+    date: string;
+    blogContent:string;
+    
+  };
+
+
+
+

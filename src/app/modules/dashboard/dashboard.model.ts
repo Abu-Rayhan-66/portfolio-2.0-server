@@ -1,13 +1,32 @@
 import mongoose from 'mongoose';
-import { TRecipe } from './recipe.interface';
+import { TBlogs, TProject, TSkills } from './dashboard.interface';
 
-const RecipeSchema = new mongoose.Schema<TRecipe>(
+
+const SkillsSchema = new mongoose.Schema<TSkills>(
   {
-    user: {
+    
+    name: {
       type: String,
       required: true,
-      ref:"User"
     },
+    image: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  },
+);
+
+const SkillsModel = mongoose.model<TSkills>('Skill', SkillsSchema);
+
+
+
+
+const ProjectSchema = new mongoose.Schema<TProject>(
+  {
+    
     title: {
       type: String,
       required: true,
@@ -16,57 +35,25 @@ const RecipeSchema = new mongoose.Schema<TRecipe>(
       type: String,
       required: true,
     },
-    cookingTime: {
-      type: Number,
-      required: true,
-    },
-   
-    upvote: {
-      type: [String],
-      required: true,
-      default: [],
-    },
-    downvote: {
-      type: [String],
-      required: true,
-      default: [],
-    },
-    upvoteCount:{
-      type:Number,
-      default:0
-    },
-    comments: {
-      type: [
-        { id: String , name: String, profilePicture: String, comment: String },
-      ],
-      required: true,
-      default: [],
-      
-    },
-    rating: {
-      type: [{ id: String, rating: Number }],
-      required: true,
-      default: [],
-    },
-    isPublished: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    ingredient: {
-      type:String,
-      
-     
-    },
     description: {
-      type:String,
-      
-     
-    },
-    isPremium: {
-      type: Boolean,
+      type: String,
       required: true,
-      default: false,
+    },
+    technologies: {
+      type: String,
+      required: true,
+    },
+    githubClient: {
+      type: String,
+      required: true,
+    },
+    githubServer: {
+      type: String,
+      required: true,
+    },
+    demo: {
+      type: String,
+      required: true,
     },
   },
   {
@@ -74,6 +61,42 @@ const RecipeSchema = new mongoose.Schema<TRecipe>(
   },
 );
 
-const RecipeModel = mongoose.model<TRecipe>('Recipe', RecipeSchema);
+const ProjectModel = mongoose.model<TProject>('Project', ProjectSchema);
 
-export default RecipeModel;
+
+const BlogSchema = new mongoose.Schema<TBlogs>(
+  {
+    
+    title: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    date: {
+      type: String,
+      required: true,
+    },
+    blogContent: {
+      type: String,
+      required: true,
+    }
+    
+  },
+  {
+    timestamps: true,
+  },
+);
+
+const BlogModel = mongoose.model<TBlogs>('Blog', BlogSchema);
+
+
+
+export const dashboardModel = {
+  SkillsModel,
+  ProjectModel,
+  BlogModel
+
+}

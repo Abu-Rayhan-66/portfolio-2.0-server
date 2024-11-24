@@ -1,22 +1,48 @@
-const createRecipeIntoDb = async (payload: TRecipe, user:JwtPayload) => {
+import { TBlogs, TProject, TSkills } from "./dashboard.interface";
+import { dashboardModel } from "./dashboard.model";
 
 
-    const userRecord = await UserModel.findById(user.id);
+const addSkillIntoDb = async (payload:TSkills) => {
+  const result = await dashboardModel.SkillsModel.create(payload);
 
-
-    if (!userRecord) {
-        throw new Error('User not found');
-      }
-    
-      if (userRecord.isBlocked) {
-        throw new Error('Your account has been blocked!');
-      }
-    
-      payload.user = user.id;
-    
-      if (payload.isPremium) {
-        payload.isPremium = true;
-      }
-
-  return await RecipeModel.create(payload);
+  return result;
 };
+
+const getSkillFromDb = async () => {
+  const result = await dashboardModel.SkillsModel.find();
+
+  return result;
+};
+
+const addProjectIntoDb = async (payload:TProject) => {
+  const result = await dashboardModel.ProjectModel.create(payload);
+
+  return result;
+};
+
+const getProjectFromDb = async () => {
+  const result = await dashboardModel.ProjectModel.find();
+
+  return result;
+};
+
+const addBlogIntoDb = async (payload:TBlogs) => {
+  const result = await dashboardModel.BlogModel.create(payload);
+
+  return result;
+};
+
+const getBlogFromDb = async () => {
+  const result = await dashboardModel.BlogModel.find();
+
+  return result;
+};
+
+export const dashboardService = {
+  addSkillIntoDb,
+  getSkillFromDb,
+  addProjectIntoDb,
+  getProjectFromDb,
+  addBlogIntoDb,
+  getBlogFromDb
+}
